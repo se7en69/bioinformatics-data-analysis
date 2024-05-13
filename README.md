@@ -1,4 +1,4 @@
-# bioinformatics-data-analysis
+# Bioinformatics-Data-Analysis-from-Scratch
 This repository contains the course materials for the "Bioinformatics Data Analysis from Scratch" course, which covers the fundamentals of bioinformatics programming using Python, R, and Linux. The course is designed for beginners with no prior experience in bioinformatics, providing a comprehensive introduction to biological programming.
 # Course Modules:
 Introduction to Biological Programming: Learn the basics of programming in Python, R, and Linux, focusing on bioinformatics applications.
