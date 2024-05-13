@@ -1,0 +1,15 @@
+$ installing samtools
+
+sudo apt install samtools
+
+
+
+$ sam-file to bam-file
+
+samtools view -S -b align.sam > align.bam
+
+
+
+$ sorting the bam-file
+
+samtools sort -O sort.bam align.bam

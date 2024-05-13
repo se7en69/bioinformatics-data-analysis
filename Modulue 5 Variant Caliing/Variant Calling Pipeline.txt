@@ -1,0 +1,75 @@
+#Quality check
+
+fastqc file.fastq
+
+
+
+#Trimming of low quality reads
+
+porechop -i file.fastq > Trimmed.fastq
+
+
+
+#Build bwa index index
+
+bwa index -p genome genome.fa
+
+
+
+#aligning reads
+
+bwa mem -t 2 genome file.fastq >align.sam
+
+
+
+#calling varient to fix NS
+
+samtools mpileup -E -u -f file.fa file.bam > vcf-file.mpileup
+
+
+
+#calling varients (Recomended)
+
+bcftools call -c -v vcf-file.mpileup > vcf-file.vfc
+
+
+
+#remove homozogus positions (Recomnded)
+
+grep 0/1 vcf-file.vcf > vcf2-file.vcf
+
+
+
+# indexing of vcf file
+
+bcftools index all.snps_indels.vcf.gz
+
+
+
+# separtion of indels
+
+bcftools view -v indels vcf-file.vfc
+
+
+
+#Count number of indels
+
+bcftools view -v indels vcf-file.vfc | grep -v -c '^#'
+
+
+
+#separtion of snps
+
+bcftools view -v snps vcf-file.vfc
+
+
+
+#count number of snps
+
+bcftools view -v snps plain.vfc | grep -v -c '^#'
+
+
+
+#position of indels/snps
+
+bcftools query -f  '%POS\n' vcf-file.vfc
